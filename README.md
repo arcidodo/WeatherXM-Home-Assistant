@@ -9,4 +9,4 @@ and edit the MQTT settings for your envoirment.
 
 set the rtl_433 addon config path to "rtl_433.conf.template"
 
-start both addons, if everythins is corect you get the data from the weather station in HA.
+start both addons, if everything is corect you get the data from the weather station in HA.
