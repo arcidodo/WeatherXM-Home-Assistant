@@ -1,4 +1,4 @@
-buy an USB RTL-SDR usb dongle.
+buy an USB RTL-SDR dongle.
 
 install both addons from this repo:
 https://github.com/pbkhrv/rtl_433-hass-addons/
