@@ -1,4 +1,7 @@
 buy an USB RTL-SDR dongle.
+i use this one: 
+
+![dongle](https://user-images.githubusercontent.com/678514/204734219-f6bddef1-f429-4a63-9816-fb33c63c3114.jpg)
 
 install both addons from this repo:
 https://github.com/pbkhrv/rtl_433-hass-addons/
