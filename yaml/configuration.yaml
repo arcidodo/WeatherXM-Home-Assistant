@@ -1,3 +1,4 @@
+sensors:
   - platform: rest
     name: "weatherxm_sensor"
     resource: https://api.weatherxm.com/api/v1/cells/<<DEVICEID>>/devices
