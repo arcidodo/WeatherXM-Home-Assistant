@@ -1,5 +1,0 @@
-output      mqtt://<HOST>:1883,user=<USERNAME>,pass=<PASSWORD>
-frequency   868M
-protocol    78
-convert     si
-pulse_detect classic
