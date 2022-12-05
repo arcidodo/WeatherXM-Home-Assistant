@@ -1,6 +1,6 @@
   - platform: rest
     name: "weatherxm_sensor"
-    resource: https://api.weatherxm.com/api/v1/cells/<<DEVICEID>>/devices
+    resource: https://api.weatherxm.com/api/v1/cells/87196d152ffffff/devices
     scan_interval: 300
     value_template: "{{ value_json.value }}"
     json_attributes_path: $.[0].current_weather
@@ -48,5 +48,34 @@
     sensors:
       weatherxm_wind_speed:
         value_template: "{{ state_attr('sensor.weatherxm_sensor', 'wind_speed')}}"
-        device_class: wind_speed
-        unit_of_measurement: "°km/h"
+        device_class: measurement
+        unit_of_measurement: "km/h"
+
+  - platform: template
+    sensors:
+      weatherxm_wind_gust:
+        value_template: "{{ state_attr('sensor.weatherxm_sensor', 'wind_gust')}}"
+        device_class: measurement
+        unit_of_measurement: "km/h"
+
+  - platform: template
+    sensors:
+      weatherxm_wind_direction:
+        value_template: "{{ state_attr('sensor.weatherxm_sensor', 'wind_direction')}}"
+        device_class: measurement
+        unit_of_measurement: "°"
+
+  - platform: template
+    sensors:
+      weatherxm_precipitation:
+        value_template: "{{ state_attr('sensor.weatherxm_sensor', 'precipitation')}}"
+        device_class: total_increasing
+        unit_of_measurement: "mm"
+
+  - platform: template
+    sensors:
+      weatherxm_uv_index:
+        value_template: "{{ state_attr('sensor.weatherxm_sensor', 'uv_index')}}"
+        device_class: measurement
+        unit_of_measurement: "UV Index"
+
