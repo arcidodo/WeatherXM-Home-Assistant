@@ -55,7 +55,6 @@
     sensors: 
       weatherxm_wind_speed_mph:
         unit_of_measurement: "mph"
-        device_class: wind_speed
         value_template: "{{ states('sensor.weatherxm_wind_speed')|float|round() / 1.6 }}"
 
   - platform: template
@@ -69,7 +68,6 @@
     sensors: 
       weatherxm_wind_gust_mph:
         unit_of_measurement: "mph"
-        device_class: wind_speed
         value_template: "{{ states('sensor.weatherxm_wind_gust')|float|round() / 1.6 }}"
 
   - platform: template
