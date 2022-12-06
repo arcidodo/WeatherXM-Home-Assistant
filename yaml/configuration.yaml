@@ -49,14 +49,15 @@ sensor:
     sensors:
       weatherxm_wind_speed:
         value_template: "{{ state_attr('sensor.weatherxm_sensor', 'wind_speed')}}"
+        device_class: wind_speed
         unit_of_measurement: "km/h"
 
   - platform: template
     sensors:
       weatherxm_wind_gust:
         value_template: "{{ state_attr('sensor.weatherxm_sensor', 'wind_gust')}}"
+        device_class: wind_speed
         unit_of_measurement: "km/h"
-
 
   - platform: template
     sensors:
@@ -68,10 +69,12 @@ sensor:
     sensors:
       weatherxm_precipitation:
         value_template: "{{ state_attr('sensor.weatherxm_sensor', 'precipitation')}}"
-        unit_of_measurement: "mm"
+        device_class: precipitation_intensity
+        unit_of_measurement: "mm/h"
 
   - platform: template
     sensors:
       weatherxm_uv_index:
         value_template: "{{ state_attr('sensor.weatherxm_sensor', 'uv_index')}}"
         unit_of_measurement: "UV Index"
+
