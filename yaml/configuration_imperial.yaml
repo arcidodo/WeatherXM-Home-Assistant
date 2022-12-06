@@ -56,7 +56,7 @@
       weatherxm_wind_speed_mph:
         unit_of_measurement: "mph"
         device_class: wind_speed
-        value_template: "{{ state_attr('sensor.weatherxm_sensor', 'wind_speed')|float|round() / 1.6 }}"
+        value_template: "{{ states('sensor.weatherxm_wind_speed')|float|round() / 1.6 }}"
 
   - platform: template
     sensors:
@@ -70,7 +70,7 @@
       weatherxm_wind_gust_mph:
         unit_of_measurement: "mph"
         device_class: wind_speed
-        value_template: "{{ state_attr('sensor.weatherxm_sensor', 'wind_gust')|float|round() / 1.6 }}"
+        value_template: "{{ states('sensor.weatherxm_wind_gust')|float|round() / 1.6 }}"
 
   - platform: template
     sensors:
@@ -85,3 +85,17 @@
           {% set direction = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N'] %}
           {% set degree = states('sensor.weatherxm_wind_direction')|float %}
             {{ direction[((degree+11.25)/22.5)|int] }}
+
+  - platform: template
+    sensors:
+      weatherxm_precipitation:
+        value_template: "{{ state_attr('sensor.weatherxm_sensor', 'precipitation')}}"
+        device_class: precipitation_intensity
+        unit_of_measurement: "mm/h"
+
+  - platform: template
+    sensors:
+      weatherxm_uv_index:
+        value_template: "{{ state_attr('sensor.weatherxm_sensor', 'uv_index')}}"
+        unit_of_measurement: "UV Index"
+
