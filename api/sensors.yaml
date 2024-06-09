@@ -22,7 +22,7 @@
 
   - platform: rest
     name: wxm_prediction_1
-    resource: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
     method: GET
     headers:
       Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
@@ -45,7 +45,7 @@
 
   - platform: rest
     name: wxm_prediction_2
-    resource: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
     method: GET
     headers:
       Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
@@ -68,7 +68,7 @@
 
   - platform: rest
     name: wxm_prediction_3
-    resource: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
     method: GET
     headers:
       Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
@@ -91,7 +91,7 @@
 
   - platform: rest
     name: wxm_prediction_4
-    resource: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
     method: GET
     headers:
       Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
@@ -114,7 +114,7 @@
 
   - platform: rest
     name: wxm_prediction_5
-    resource: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
     method: GET
     headers:
       Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
