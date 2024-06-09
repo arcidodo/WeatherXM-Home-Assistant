@@ -7,9 +7,7 @@ rest:
       Content-Type: "application/json"
     sensor:
       - name: "wxm_token"
-        #value_template: "{{ value_json.token }}"
         value_template: '1'
-        #json_attributes_path: "$"
         json_attributes:
           - token
           - refreshToken
