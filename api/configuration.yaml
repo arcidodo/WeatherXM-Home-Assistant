@@ -1,0 +1,15 @@
+rest:
+    resource: "https://api.weatherxm.com/api/v1/auth/login"
+    method: POST
+    payload: '{"username": "<<email>>", "password": "<<password>>"}'
+    headers:
+      accept: "application/json"
+      Content-Type: "application/json"
+    sensor:
+      - name: "wxm_token"
+        #value_template: "{{ value_json.token }}"
+        value_template: '1'
+        #json_attributes_path: "$"
+        json_attributes:
+          - token
+          - refreshToken
