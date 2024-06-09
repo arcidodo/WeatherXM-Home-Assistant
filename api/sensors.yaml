@@ -1,0 +1,330 @@
+
+##WXM NEW##
+
+  - platform: rest
+    name: "wxm_today"
+    resource: https://api.weatherxm.com/api/v1/cells/<<CELLID>>/devices
+    scan_interval: 300
+    value_template: "{{ value_json.value }}"
+    json_attributes_path: $.[0].current_weather
+    json_attributes:
+      - id
+      - temperature
+      - feels_like
+      - humidity
+      - icon  
+      - precipitation
+      - pressure
+      - uv_index
+      - wind_direction
+      - wind_gust
+      - wind_speed
+
+  - platform: rest
+    name: wxm_prediction_1
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    method: GET
+    headers:
+      Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+      Accept: "*/*"
+    value_template: "{{ value_json.value }}"
+    json_attributes_path: $.[0].daily
+    json_attributes:
+      - temperature_max
+      - temperature_min
+      - precipitation_probability
+      - precipitation_intensity
+      - humidity
+      - uv_index
+      - pressure
+      - icon
+      - precipitation_type
+      - wind_speed
+      - wind_direction
+      - timestamp
+
+  - platform: rest
+    name: wxm_prediction_2
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    method: GET
+    headers:
+      Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+      Accept: "*/*"
+    value_template: "{{ value_json.timestamp }}"
+    json_attributes_path: $.[1].daily
+    json_attributes:
+      - temperature_max
+      - temperature_min
+      - precipitation_probability
+      - precipitation_intensity
+      - humidity
+      - uv_index
+      - pressure
+      - icon
+      - precipitation_type
+      - wind_speed
+      - wind_direction
+      - timestamp
+
+  - platform: rest
+    name: wxm_prediction_3
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    method: GET
+    headers:
+      Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+      Accept: "*/*"
+    value_template: "{{ value_json.timestamp }}"
+    json_attributes_path: $.[2].daily
+    json_attributes:
+      - temperature_max
+      - temperature_min
+      - precipitation_probability
+      - precipitation_intensity
+      - humidity
+      - uv_index
+      - pressure
+      - icon
+      - precipitation_type
+      - wind_speed
+      - wind_direction
+      - timestamp
+
+  - platform: rest
+    name: wxm_prediction_4
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    method: GET
+    headers:
+      Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+      Accept: "*/*"
+    value_template: "{{ value_json.timestamp }}"
+    json_attributes_path: $.[3].daily
+    json_attributes:
+      - temperature_max
+      - temperature_min
+      - precipitation_probability
+      - precipitation_intensity
+      - humidity
+      - uv_index
+      - pressure
+      - icon
+      - precipitation_type
+      - wind_speed
+      - wind_direction
+      - timestamp
+
+  - platform: rest
+    name: wxm_prediction_5
+    resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+    method: GET
+    headers:
+      Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+      Accept: "*/*"
+    value_template: "{{ value_json.timestamp }}"
+    json_attributes_path: $.[4].daily
+    json_attributes:
+      - temperature_max
+      - temperature_min
+      - precipitation_probability
+      - precipitation_intensity
+      - humidity
+      - uv_index
+      - pressure
+      - icon
+      - precipitation_type
+      - wind_speed
+      - wind_direction
+      - timestamp
+
+  - platform: rest
+    name: wxm_total_rewards
+    resource: "https://api.weatherxm.com/api/v1/devices/<<ID>>/rewards"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+      Accept: "*/*"
+    value_template: "{{ value_json.total_rewards }}"
+    json_attributes_path: "$"
+    json_attributes:
+      - total_rewards
+
+  - platform: rest
+    name: wxm_reward
+    resource: "https://api.weatherxm.com/api/v1/devices/<<ID>>/rewards"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+      Accept: "*/*"
+    value_template: "{{ value_json.value }}"
+    json_attributes_path: "$.latest"
+    json_attributes:
+      - base_reward
+      - total_business_boost_reward
+      - total_reward
+      - base_reward_score
+
+
+  - platform: template
+    sensors:
+        wxm_prediction_precipitation_intensity_1:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_1','precipitation_intensity') }}"
+            device_class: precipitation_intensity
+            unit_of_measurement: "mm/h"
+        wxm_prediction_temperature_max_1:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_1','temperature_max') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_temperature_min_1:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_1','temperature_min') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_precipitation_probability_1:
+            value_template: "{{ state_attr('sensor.wxm_prediction_1', 'precipitation_probability')|round(2)}}"
+            unit_of_measurement: "°%"
+        wxm_prediction_icon_1:
+            friendly_name: 'wxm_prediction_icon_1'
+            value_template: >
+                {% set state = state_attr('sensor.wxm_prediction_1', 'icon') %}
+                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
+                {% elif state == 'cloudy-night' %} cloudy-night
+                {% elif state == 'cloudy-day' %} cloudy-day
+                {% elif state == 'sunny' %} sunny
+                {% elif state == 'drizzle' %} light-rain
+                {% elif state == 'rainy' %} rainy
+                {% elif state == 'rain' %} rain
+                {% elif state == 'unavailable' %} unavailable
+                {% elif state == 'Unavailable' %} Unavailable
+                {% elif state == 'unknown' %} unknown
+                {% elif state == 'Unknown' %} Unknown
+                {% endif %}
+
+        wxm_prediction_precipitation_intensity_2:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_2','precipitation_intensity') }}"
+            device_class: precipitation_intensity
+            unit_of_measurement: "mm/h"
+        wxm_prediction_temperature_max_2:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_2','temperature_max') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_temperature_min_2:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_2','temperature_min') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_precipitation_probability_2:
+            value_template: "{{ state_attr('sensor.wxm_prediction_2', 'precipitation_probability')|round(2)}}"
+            unit_of_measurement: "°%"
+        wxm_prediction_icon_2:
+            friendly_name: 'wxm_prediction_icon_2'
+            value_template: >
+                {% set state = state_attr('sensor.wxm_prediction_2', 'icon') %}
+                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
+                {% elif state == 'cloudy-night' %} cloudy-night
+                {% elif state == 'cloudy-day' %} cloudy-day
+                {% elif state == 'sunny' %} sunny
+                {% elif state == 'drizzle' %} light-rain
+                {% elif state == 'rainy' %} rainy
+                {% elif state == 'rain' %} rain
+                {% elif state == 'unavailable' %} unavailable
+                {% elif state == 'Unavailable' %} Unavailable
+                {% elif state == 'unknown' %} unknown
+                {% elif state == 'Unknown' %} Unknown
+                {% endif %}
+
+        wxm_prediction_precipitation_intensity_3:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_3','precipitation_intensity') }}"
+            device_class: precipitation_intensity
+            unit_of_measurement: "mm/h"
+        wxm_prediction_temperature_max_3:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_3','temperature_max') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_temperature_min_3:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_3','temperature_min') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_precipitation_probability_3:
+            value_template: "{{ state_attr('sensor.wxm_prediction_3', 'precipitation_probability')|round(2)}}"
+            unit_of_measurement: "°%"
+        wxm_prediction_icon_3:
+            friendly_name: 'wxm_prediction_icon_3'
+            value_template: >
+                {% set state = state_attr('sensor.wxm_prediction_3', 'icon') %}
+                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
+                {% elif state == 'cloudy-night' %} cloudy-night
+                {% elif state == 'cloudy-day' %} cloudy-day
+                {% elif state == 'sunny' %} sunny
+                {% elif state == 'drizzle' %} light-rain
+                {% elif state == 'rainy' %} rainy
+                {% elif state == 'rain' %} rain
+                {% elif state == 'unavailable' %} unavailable
+                {% elif state == 'Unavailable' %} Unavailable
+                {% elif state == 'unknown' %} unknown
+                {% elif state == 'Unknown' %} Unknown
+                {% endif %}
+        wxm_prediction_precipitation_intensity_4:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_4','precipitation_intensity') }}"
+            device_class: precipitation_intensity
+            unit_of_measurement: "mm/h"
+        wxm_prediction_temperature_max_4:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_4','temperature_max') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_temperature_min_4:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_4','temperature_min') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_precipitation_probability_4:
+            value_template: "{{ state_attr('sensor.wxm_prediction_4', 'precipitation_probability')|round(2)}}"
+            unit_of_measurement: "°%"
+        wxm_prediction_icon_4:
+            friendly_name: 'wxm_prediction_icon_4'
+            value_template: >
+                {% set state = state_attr('sensor.wxm_prediction_4', 'icon') %}
+                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
+                {% elif state == 'cloudy-night' %} cloudy-night
+                {% elif state == 'cloudy-day' %} cloudy-day
+                {% elif state == 'sunny' %} sunny
+                {% elif state == 'drizzle' %} light-rain
+                {% elif state == 'rainy' %} rainy
+                {% elif state == 'rain' %} rain
+                {% elif state == 'unavailable' %} unavailable
+                {% elif state == 'Unavailable' %} Unavailable
+                {% elif state == 'unknown' %} unknown
+                {% elif state == 'Unknown' %} Unknown
+                {% endif %}
+
+        wxm_prediction_precipitation_intensity_5:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_5','precipitation_intensity') }}"
+            device_class: precipitation_intensity
+            unit_of_measurement: "mm/h"
+        wxm_prediction_temperature_max_5:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_5','temperature_max') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_temperature_min_5:
+            value_template: "{{ state_attr ('sensor.wxm_prediction_5','temperature_min') }}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_prediction_precipitation_probability_5:
+            value_template: "{{ state_attr('sensor.wxm_prediction_5', 'precipitation_probability')|round(2)}}"
+            unit_of_measurement: "°%"
+        wxm_prediction_icon_5:
+            friendly_name: 'wxm_prediction_icon_5'
+            value_template: >
+                {% set state = state_attr('sensor.wxm_prediction_5', 'icon') %}
+                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
+                {% elif state == 'cloudy-night' %} cloudy-night
+                {% elif state == 'cloudy-day' %} cloudy-day
+                {% elif state == 'sunny' %} sunny
+                {% elif state == 'drizzle' %} light-rain
+                {% elif state == 'rainy' %} rainy
+                {% elif state == 'rain' %} rain
+                {% elif state == 'unavailable' %} unavailable
+                {% elif state == 'Unavailable' %} Unavailable
+                {% elif state == 'unknown' %} unknown
+                {% elif state == 'Unknown' %} Unknown
+                {% endif %}
