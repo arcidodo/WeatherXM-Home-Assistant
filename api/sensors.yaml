@@ -136,8 +136,8 @@
       - timestamp
 
   - platform: rest
-    name: wxm_reward
-    resource: "https://api.weatherxm.com/api/v1/devices/<<ID>>/rewards"
+    name: wxm_total_rewards
+    resource: "https://api.weatherxm.com/api/v1/devices/f8a601c0-4e07-11ed-9972-4f669f2d96bd/rewards"
     method: GET
     headers:
       Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
@@ -145,10 +145,22 @@
     value_template: "{{ value_json.total_rewards }}"
     json_attributes_path: "$"
     json_attributes:
-      - latest.base_reward
-      - latest.total_business_boost_reward
-      - latest.total_reward
-      - latest.base_reward_score
+      - total_rewards
+
+  - platform: rest
+    name: wxm_reward
+    resource: "https://api.weatherxm.com/api/v1/devices/f8a601c0-4e07-11ed-9972-4f669f2d96bd/rewards"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+      Accept: "*/*"
+    value_template: "{{ value_json.value }}"
+    json_attributes_path: "$.latest"
+    json_attributes:
+      - base_reward
+      - total_business_boost_reward
+      - total_reward
+      - base_reward_score
 
 
   - platform: template
