@@ -165,6 +165,68 @@
 
   - platform: template
     sensors:
+        wxm_temperature:
+            value_template: "{{ state_attr('sensor.wxm_today', 'temperature')|round(2)}}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_feels_like:
+            value_template: "{{ state_attr('sensor.wxm_today', 'feels_like')|round(2)}}"
+            device_class: temperature
+            unit_of_measurement: "°C"
+        wxm_pressure_hpa:
+            value_template: "{{ state_attr('sensor.wxm_today', 'pressure')|round(0)}}"
+            device_class: pressure
+            unit_of_measurement: "°hPa"
+        wxm_humidity:
+            value_template: "{{ state_attr('sensor.wxm_today', 'humidity')|round(2)}}"
+            device_class: humidity
+            unit_of_measurement: "°%"
+        wxm_wind_speed:
+            value_template: "{{ state_attr('sensor.wxm_today', 'wind_speed')}}"
+            device_class: wind_speed
+            unit_of_measurement: "km/h"
+        wxm_wind_gust:
+            value_template: "{{ state_attr('sensor.wxm_today', 'wind_gust')}}"
+            device_class: wind_speed
+            unit_of_measurement: "km/h"
+        wxm_wind_speed_mph:
+            value_template: "{{ (state_attr('sensor.wxm_today', 'wind_speed') |float / 1.60934) |round(2) }}"
+            unit_of_measurement: "mph"
+        wxm_wind_gust_mph:
+            value_template: "{{ (state_attr('sensor.wxm_today', 'wind_gust') |float / 1.60934) |round(2) }}"
+            unit_of_measurement: "mph"
+        wxm_wind_direction:
+            value_template: "{{ state_attr('sensor.wxm_today', 'wind_direction')}}"
+            unit_of_measurement: "°"
+        wxm_wind_direction_cardinal:
+          value_template: >
+              {% set direction = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N'] %}
+              {% set degree = states('sensor.weatherxm_wind_direction')|float %}
+                {{ direction[((degree+11.25)/22.5)|int] }}
+        wxm_precipitation:
+            value_template: "{{ state_attr('sensor.wxm_today', 'precipitation')}}"
+            device_class: precipitation_intensity
+            unit_of_measurement: "mm/h"
+        wxm_uv_index:
+            value_template: "{{ state_attr('sensor.wxm_today', 'uv_index')}}"
+            unit_of_measurement: "UV Index"
+        wxm_icon:
+            friendly_name: 'weatherxm icon'
+            value_template: >
+                {% set state = state_attr('sensor.wxm_today', 'icon') %}
+                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
+                {% elif state == 'cloudy-night' %} cloudy-night
+                {% elif state == 'cloudy-day' %} cloudy-day
+                {% elif state == 'sunny' %} sunny
+                {% elif state == 'drizzle' %} light-rain
+                {% elif state == 'rainy' %} rainy
+                {% elif state == 'rain' %} rain
+                {% elif state == 'unavailable' %} unavailable
+                {% elif state == 'Unavailable' %} Unavailable
+                {% elif state == 'unknown' %} unknown
+                {% elif state == 'Unknown' %} Unknown
+                {% endif %}
         wxm_prediction_precipitation_intensity_1:
             value_template: "{{ state_attr ('sensor.wxm_prediction_1','precipitation_intensity') }}"
             device_class: precipitation_intensity
