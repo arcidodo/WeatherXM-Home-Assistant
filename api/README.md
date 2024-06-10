@@ -17,8 +17,6 @@ you need the value of the ID field example: f9a601c0-1234-1234-1234-4f669f2d96bd
 
 now you have your ID and your cellid, open the sensors.yaml and edit the flowing lines.
 
-CELLID:
 Line 6 add your cellid.
 
-ID:
 Line 25, 48, 71, 94, 117, 140 and 152 youre ID
