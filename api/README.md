@@ -3,9 +3,14 @@ add your email and password on line 4 in the configuration.yaml
 
     payload: '{"username": "example@wxm.com", "password": "verrystrongpassword"}'
 
-go to the explorer click on your station HEX and the CELLID is visable in the url
 
-add the cell id in this url: and navigate to is in your browser.
+
+To get your deviceid you need to navigate to https://explorer.weatherxm.com click on your device and your device id is now visable in the URL. (remove the #)
+example:
+<img width="575" alt="Schermafbeelding_2022-12-01_om_08 03 30" src="https://user-images.githubusercontent.com/678514/205918480-bab2fae7-968a-4b85-8fa3-7e59e0e7878d.png">
+
+
+add the deviceid in this url: and navigate to is in your browser.
 https://api.weatherxm.com/api/v1/cells/CHANGEME/devices
 
 you need the value of the ID field example: f9a601c0-1234-1234-1234-4f669f2d96bd
