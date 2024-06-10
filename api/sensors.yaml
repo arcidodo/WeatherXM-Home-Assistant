@@ -214,10 +214,11 @@
             friendly_name: 'weatherxm icon'
             value_template: >
                 {% set state = state_attr('sensor.wxm_today', 'icon') %}
-                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
-                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
-                {% elif state == 'cloudy-night' %} cloudy-night
-                {% elif state == 'cloudy-day' %} cloudy-day
+                {% if state == 'partly-cloudy-night' %} partly-cloudy
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy
+                {% elif state == 'cloudy-night' %} cloudy
+                {% elif state == 'cloudy-day' %} cloudy
+                {% elif state == 'cloudy' %} cloudy
                 {% elif state == 'sunny' %} sunny
                 {% elif state == 'drizzle' %} light-rain
                 {% elif state == 'rainy' %} rainy
@@ -246,10 +247,11 @@
             friendly_name: 'wxm_prediction_icon_1'
             value_template: >
                 {% set state = state_attr('sensor.wxm_prediction_1', 'icon') %}
-                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
-                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
-                {% elif state == 'cloudy-night' %} cloudy-night
-                {% elif state == 'cloudy-day' %} cloudy-day
+                {% if state == 'partly-cloudy-night' %} partly-cloudy
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy
+                {% elif state == 'cloudy-night' %} cloudy
+                {% elif state == 'cloudy-day' %} cloudy
+                {% elif state == 'cloudy' %} cloudy
                 {% elif state == 'sunny' %} sunny
                 {% elif state == 'drizzle' %} light-rain
                 {% elif state == 'rainy' %} rainy
@@ -259,7 +261,6 @@
                 {% elif state == 'unknown' %} unknown
                 {% elif state == 'Unknown' %} Unknown
                 {% endif %}
-
         wxm_prediction_precipitation_intensity_2:
             value_template: "{{ state_attr ('sensor.wxm_prediction_2','precipitation_intensity') }}"
             device_class: precipitation_intensity
@@ -279,10 +280,11 @@
             friendly_name: 'wxm_prediction_icon_2'
             value_template: >
                 {% set state = state_attr('sensor.wxm_prediction_2', 'icon') %}
-                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
-                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
-                {% elif state == 'cloudy-night' %} cloudy-night
-                {% elif state == 'cloudy-day' %} cloudy-day
+                {% if state == 'partly-cloudy-night' %} partly-cloudy
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy
+                {% elif state == 'cloudy-night' %} cloudy
+                {% elif state == 'cloudy-day' %} cloudy
+                {% elif state == 'cloudy' %} cloudy
                 {% elif state == 'sunny' %} sunny
                 {% elif state == 'drizzle' %} light-rain
                 {% elif state == 'rainy' %} rainy
@@ -292,7 +294,6 @@
                 {% elif state == 'unknown' %} unknown
                 {% elif state == 'Unknown' %} Unknown
                 {% endif %}
-
         wxm_prediction_precipitation_intensity_3:
             value_template: "{{ state_attr ('sensor.wxm_prediction_3','precipitation_intensity') }}"
             device_class: precipitation_intensity
@@ -312,10 +313,11 @@
             friendly_name: 'wxm_prediction_icon_3'
             value_template: >
                 {% set state = state_attr('sensor.wxm_prediction_3', 'icon') %}
-                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
-                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
-                {% elif state == 'cloudy-night' %} cloudy-night
-                {% elif state == 'cloudy-day' %} cloudy-day
+                {% if state == 'partly-cloudy-night' %} partly-cloudy
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy
+                {% elif state == 'cloudy-night' %} cloudy
+                {% elif state == 'cloudy-day' %} cloudy
+                {% elif state == 'cloudy' %} cloudy
                 {% elif state == 'sunny' %} sunny
                 {% elif state == 'drizzle' %} light-rain
                 {% elif state == 'rainy' %} rainy
@@ -344,10 +346,11 @@
             friendly_name: 'wxm_prediction_icon_4'
             value_template: >
                 {% set state = state_attr('sensor.wxm_prediction_4', 'icon') %}
-                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
-                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
-                {% elif state == 'cloudy-night' %} cloudy-night
-                {% elif state == 'cloudy-day' %} cloudy-day
+                {% if state == 'partly-cloudy-night' %} partly-cloudy
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy
+                {% elif state == 'cloudy-night' %} cloudy
+                {% elif state == 'cloudy-day' %} cloudy
+                {% elif state == 'cloudy' %} cloudy
                 {% elif state == 'sunny' %} sunny
                 {% elif state == 'drizzle' %} light-rain
                 {% elif state == 'rainy' %} rainy
@@ -357,7 +360,6 @@
                 {% elif state == 'unknown' %} unknown
                 {% elif state == 'Unknown' %} Unknown
                 {% endif %}
-
         wxm_prediction_precipitation_intensity_5:
             value_template: "{{ state_attr ('sensor.wxm_prediction_5','precipitation_intensity') }}"
             device_class: precipitation_intensity
@@ -377,10 +379,11 @@
             friendly_name: 'wxm_prediction_icon_5'
             value_template: >
                 {% set state = state_attr('sensor.wxm_prediction_5', 'icon') %}
-                {% if state == 'partly-cloudy-night' %} partly-cloudy-night
-                {% elif state == 'partly-cloudy-day' %} partly-cloudy-day
-                {% elif state == 'cloudy-night' %} cloudy-night
-                {% elif state == 'cloudy-day' %} cloudy-day
+                {% if state == 'partly-cloudy-night' %} partly-cloudy
+                {% elif state == 'partly-cloudy-day' %} partly-cloudy
+                {% elif state == 'cloudy-night' %} cloudy
+                {% elif state == 'cloudy-day' %} cloudy
+                {% elif state == 'cloudy' %} cloudy
                 {% elif state == 'sunny' %} sunny
                 {% elif state == 'drizzle' %} light-rain
                 {% elif state == 'rainy' %} rainy
