@@ -1,0 +1,27 @@
+alias: Weatherxm reload data
+description: ""
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: time_pattern
+    hours: /1
+condition: []
+action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: homeassistant.update_entity
+    data: {}
+    target:
+      entity_id:
+        - sensor.wxm_prediction_1
+        - sensor.wxm_prediction_2
+        - sensor.wxm_prediction_3
+        - sensor.wxm_prediction_4
+        - sensor.wxm_prediction_5
+        - sensor.wxm_today
+        - sensor.wxm_reward
+        - sensor.wxm_total_reward
+mode: single
