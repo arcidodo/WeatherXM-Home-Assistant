@@ -118,3 +118,23 @@ rest:
           - total_business_boost_reward
           - total_reward
           - base_reward_score
+          
+    - resource: https://api.weatherxm.com/api/v1/cells/<<CELLID>>/devices
+      method: GET
+      sensor:
+      - name: "wxm_today"
+        value_template: "{{ value_json.value }}"
+        json_attributes_path: $.[0].current_weather
+        json_attributes:
+         - id
+         - temperature
+         - feels_like
+         - humidity
+         - icon  
+         - precipitation
+         - pressure
+         - uv_index
+         - wind_direction
+         - wind_gust
+         - wind_speed
+         - timestamp
