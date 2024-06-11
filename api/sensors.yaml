@@ -1,26 +1,5 @@
 
 ##WXM NEW##
-
-  - platform: rest
-    name: "wxm_today"
-    resource: https://api.weatherxm.com/api/v1/cells/<<CELLID>>/devices
-    scan_interval: 300
-    value_template: "{{ value_json.value }}"
-    json_attributes_path: $.[0].current_weather
-    json_attributes:
-      - id
-      - temperature
-      - feels_like
-      - humidity
-      - icon  
-      - precipitation
-      - pressure
-      - uv_index
-      - wind_direction
-      - wind_gust
-      - wind_speed
-
-
   - platform: template
     sensors:
         wxm_temperature:
