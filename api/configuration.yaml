@@ -11,3 +11,110 @@ rest:
         json_attributes:
           - token
           - refreshToken
+
+    - resource_template: 'https://api.weatherxm.com/api/v1/me/devices/<<ID>>/forecast?fromDate={{ now().strftime("%Y-%m-%d") }}&toDate={{ (now()+timedelta(days=6)).strftime("%Y-%m-%d") }}&exclude=hourly'
+      method: GET
+      headers:
+        Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+        Accept: "*/*"
+      sensor:
+       - name: "wxm_prediction_1"
+         value_template: "{{ value_json.timestamp }}"
+         json_attributes_path: $.[0].daily
+         json_attributes:
+           - temperature_max
+           - temperature_min
+           - precipitation_probability
+           - precipitation_intensity
+           - humidity
+           - uv_index
+           - pressure
+           - icon
+           - precipitation_type
+           - wind_speed
+           - wind_direction
+           - timestamp
+       - name: "wxm_prediction_2"
+         value_template: "{{ value_json.timestamp }}"
+         json_attributes_path: $.[1].daily
+         json_attributes:
+           - temperature_max
+           - temperature_min
+           - precipitation_probability
+           - precipitation_intensity
+           - humidity
+           - uv_index
+           - pressure
+           - icon
+           - precipitation_type
+           - wind_speed
+           - wind_direction
+           - timestamp
+       - name: "wxm_prediction_3"
+         value_template: "{{ value_json.timestamp }}"
+         json_attributes_path: $.[2].daily
+         json_attributes:
+           - temperature_max
+           - temperature_min
+           - precipitation_probability
+           - precipitation_intensity
+           - humidity
+           - uv_index
+           - pressure
+           - icon
+           - precipitation_type
+           - wind_speed
+           - wind_direction
+           - timestamp
+       - name: "wxm_prediction_4"
+         value_template: "{{ value_json.timestamp }}"
+         json_attributes_path: $.[3].daily
+         json_attributes:
+           - temperature_max
+           - temperature_min
+           - precipitation_probability
+           - precipitation_intensity
+           - humidity
+           - uv_index
+           - pressure
+           - icon
+           - precipitation_type
+           - wind_speed
+           - wind_direction
+           - timestamp
+       - name: "wxm_prediction_5"
+         value_template: "{{ value_json.timestamp }}"
+         json_attributes_path: $.[4].daily
+         json_attributes:
+           - temperature_max
+           - temperature_min
+           - precipitation_probability
+           - precipitation_intensity
+           - humidity
+           - uv_index
+           - pressure
+           - icon
+           - precipitation_type
+           - wind_speed
+           - wind_direction
+           - timestamp
+
+    - resource: "https://api.weatherxm.com/api/v1/devices/<<ID>>/rewards"
+      method: GET
+      headers:
+        Authorization: "Bearer {{ state_attr('sensor.wxm_token','token')}}"
+        Accept: "*/*"
+      sensor:
+       - name: "wxm_total_rewards"
+         value_template: "{{ value_json.total_rewards }}"
+         json_attributes_path: "$"
+         json_attributes:
+          - total_rewards
+       - name: "wxm_reward"
+         value_template: "{{ value_json.wxm_reward }}"
+         json_attributes_path: "$.latest"
+         json_attributes:
+          - base_reward
+          - total_business_boost_reward
+          - total_reward
+          - base_reward_score
